@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?health');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="text-center mb-8 p-6 rounded-lg shadow-lg bg-gradient-to-r from-purple-500 to-blue-500">
+            <h1 class="text-4xl font-bold text-white">Diabetes Detection</h1>
+            <p class="text-lg text-white mt-2">Please enter the required information:</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <form action="{{url_for('predict')}}" method="POST" class="space-y-4">
+                <div>
+                    <label for="Pregnancies" class="block text-sm font-medium text-gray-700">Pregnancies</label>
+                    <input type="number" id="Pregnancies" name="Pregnancies"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter number of pregnancies...">
+                </div>
+                <div>
+                    <label for="Glucose" class="block text-sm font-medium text-gray-700">Glucose</label>
+                    <input type="number" id="Glucose" name="Glucose"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter glucose level...">
+                </div>
+                <div>
+                    <label for="BloodPressure" class="block text-sm font-medium text-gray-700">Blood Pressure</label>
+                    <input type="number" id="BloodPressure" name="BloodPressure"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter blood pressure...">
+                </div>
+                <div>
+                    <label for="SkinThickness" class="block text-sm font-medium text-gray-700">Skin Thickness</label>
+                    <input type="number" id="SkinThickness" name="SkinThickness"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter skin thickness...">
+                </div>
+                <div>
+                    <label for="Insulin" class="block text-sm font-medium text-gray-700">Insulin</label>
+                    <input type="number" id="Insulin" name="Insulin"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter insulin level...">
+                </div>
+                <div>
+                    <label for="BMI" class="block text-sm font-medium text-gray-700">Body Mass Index</label>
+                    <input type="number" id="BMI" name="BMI"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter BMI...">
+                </div>
+                <div>
+                    <label for="DiabetesPedigreeFunction" class="block text-sm font-medium text-gray-700">Diabetes
+                        Pedigree Function</label>
+                    <input type="number" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter diabetes pedigree function...">
+                </div>
+                <div>
+                    <label for="Age" class="block text-sm font-medium text-gray-700">Age</label>
+                    <input type="number" id="Age" name="Age"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="Enter age...">
+                </div>
+                <div>
+                    <button type="submit"
+                        onclick=" document.getElementById('bottom').scrollIntoView({behavior:"smooth"});"
+                        class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Submit</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div id="bottom" class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">About the Model</h2>
+                <p class="text-gray-700">Our model uses Logistic algorithms to predict forest conditions based on Input field. It helps in detection and prevention of Diabetes in People.</p>
+                <h2 class="text-xl  text-gray-800 mt-4 mb-2 text-center ">Model Accuracy 85%</h2>
+                <h2 class="text-2xl font-bold text-green-700 mt-4 mb-2 bg-green-100 p-3 rounded shadow">{{prediction_text}}</h2>
+            </div>
+    </div>
+</body>
+
+</html>
