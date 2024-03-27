@@ -3,3 +3,5 @@ numpy
 scikit-learn
 seaborn
 Flask
+Jinja2
+waitress
